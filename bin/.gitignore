@@ -1,0 +1,9 @@
+/Compiler.class
+/Parser.class
+/Scanner.class
+/Token.class
+/Visitor.class
+/nodeBody.class
+/nodeCompositeCommand.class
+/nodeDeclarations.class
+/nodeProgram.class

@@ -1,0 +1,185 @@
+package lexic_classes;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+
+
+
+public class Scanner {
+	// StringBuffer é uma classe do java que permite deixar a string mutável, sem ter muitos problemas
+	private static String fileContent = "abcd\ndo\n445\na45\n#asdasdfewsdcdfsedf\n:=\000";
+    private char currentChar;
+    private byte currentKind;
+    private StringBuffer currentSpelling;
+    private int charPosition;
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner();
+        Token token = scanner.scan();
+    }
+
+    public Scanner() {
+        currentChar = fileContent.charAt(0);
+        charPosition = 0;
+    }
+//	public static void main(String[] args) {
+//		// Função criada para abrir o arquivo de texto com o código fonte
+//	    String fileName = "arquivo-com-o-texto.txt";
+//	    try {
+//	        File txtFile = new File(fileName);
+//	        FileReader fileReader = new FileReader(txtFile);
+//	        BufferedReader bufferedReader = new BufferedReader(fileReader);
+//	        String line;
+//	        while ((line = bufferedReader.readLine()) != null) {
+//	        	fileContent[fileContent.length - 1] = line;
+//	        	fileContent = Arrays.copyOf(fileContent, fileContent.length + 1);
+//	        	// Copia cada linha do arquivo para a variável fileContent
+//	        }
+//	        // Retira uma linha do vetor de strings, pois ele vame com uma a mais 
+//	        fileContent = Arrays.copyOf(fileContent, fileContent.length - 1);
+//	        bufferedReader.close();
+//	    } catch (IOException e) {
+//	    	System.out.println("Deu ruim no arquivo aqui");
+//	        e.printStackTrace();
+//	    }
+//	}
+	
+	private void take (char expectedChar) {
+		 System.out.println(fileContent);
+		if (currentChar == expectedChar) {
+			currentSpelling.append(currentChar);
+			charPosition++;
+			currentChar = fileContent.charAt(charPosition);
+		} else {
+			System.out.println("Erro: caractere esperado não encontrado.");
+		}
+	}
+	
+	private void takeIt () {
+		currentSpelling.append(currentChar);
+		charPosition++;
+		currentChar = fileContent.charAt(charPosition);
+	}
+	
+	private byte scanToken () {
+		if(isLetter(currentChar)) {
+			// Regra do (letter(letter|digit)*)
+			takeIt();
+			while(isLetter(currentChar) || isDigit(currentChar)) {
+				takeIt();
+			}
+			return Token.IDENTIFIER;
+		} else if(isDigit(currentChar)) {
+			// Regra do (digit(digit)*)
+			while(isDigit(currentChar)) {
+				takeIt();
+			}
+			return Token.INTLITERAL;
+		} else {
+			switch(currentChar) {
+			case '+':
+			case '-':
+			case '*':
+			case '/':
+			case '<':
+			case '>':
+			case '=': {
+				//Regra dos operadores
+				takeIt();
+				return Token.OPERATOR;
+			}
+			case ';': {
+				//Regra do ponto e vírgula
+				takeIt();
+				return Token.SEMICOLON;
+			}
+			case '.': {
+				//Regra do float
+				takeIt();
+				return Token.FLOATDOT;
+			}
+			case ':': {
+				//Regra dos dois pontos ou da atribuição
+				takeIt();
+				if(currentChar == '=') {
+					takeIt();
+					return Token.BECOMES;
+				}
+				return Token.COLON;
+			}
+			case '(': {
+				takeIt();
+				return Token.LPAREN;
+			}
+			case ')': {
+				takeIt();
+				return Token.RPAREN;
+			}
+			case '\000': {
+				return Token.EOT;
+			}
+			default: {
+				System.out.println("Erro: caractere desconhecido encontrado.");
+				return Token.LEXICALERROR;
+			}
+			}
+		}
+	}
+	
+	private void scanSeparator() {
+		// Casos para o compilador ignorar
+		switch(currentChar) {
+		case '#': {
+			// Regra dos comentários
+			takeIt();
+			while(isGraphic(currentChar)) {
+				takeIt();
+				take('\n');
+			}
+			break;
+		}
+		case ' ': 
+		case '\n': {
+			// Regra do espaço e da quebra de linha
+			takeIt();
+			break;
+		}
+		}
+	}
+	
+	
+	public Token scan () {
+		while (currentChar == '#'
+				|| currentChar == ' '
+				|| currentChar == '\n') {
+			scanSeparator();
+		}
+		currentSpelling = new StringBuffer("");
+		currentKind = scanToken();
+		System.out.println("Análise léxica concluída.");
+
+		return new Token(currentKind, currentSpelling.toString());
+	}
+	
+	
+	
+
+	private boolean isLetter(char c) {
+		// Retorna verdadeiro se o caractere atual for uma letra minúscula
+		return (currentChar > 96 && currentChar < 123) ? true : false;
+	}
+	
+	private boolean isDigit(char c) {
+		// Retorna verdadeiro se o caractere atual for um dígito entre 0 e 9
+		return (currentChar > 47 && currentChar < 58) ? true : false;
+	}
+	
+	private boolean isGraphic(char c) {
+		// Retorna verdadeiro se o caractere atual for gráfico, ou seja, estiver entre 32 e 126 na tabela ascii
+		return (currentChar > 31 &&  currentChar < 127) ? true : false;
+	}
+
+
+}

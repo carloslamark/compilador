@@ -1,0 +1,7 @@
+program carlos;
+ var um : integer;
+ var dois : integer;
+begin
+ um := 1;
+ dois := 2;
+end

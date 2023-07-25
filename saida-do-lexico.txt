@@ -1,0 +1,96 @@
+program
+Coluna: 6
+Linha: 0
+
+<identifier>
+Coluna: 14
+Linha: 0
+
+;
+Coluna: 15
+Linha: 0
+
+var
+Coluna: 5
+Linha: 1
+
+<identifier>
+Coluna: 9
+Linha: 1
+
+:
+Coluna: 12
+Linha: 1
+
+integer
+Coluna: 21
+Linha: 1
+
+;
+Coluna: 22
+Linha: 1
+
+var
+Coluna: 5
+Linha: 2
+
+<identifier>
+Coluna: 11
+Linha: 2
+
+:
+Coluna: 14
+Linha: 2
+
+integer
+Coluna: 23
+Linha: 2
+
+;
+Coluna: 24
+Linha: 2
+
+begin
+Coluna: 5
+Linha: 3
+
+<identifier>
+Coluna: 4
+Linha: 4
+
+:=
+Coluna: 8
+Linha: 4
+
+<integer-literal>
+Coluna: 11
+Linha: 4
+
+;
+Coluna: 12
+Linha: 4
+
+<identifier>
+Coluna: 6
+Linha: 5
+
+:=
+Coluna: 10
+Linha: 5
+
+<integer-literal>
+Coluna: 13
+Linha: 5
+
+;
+Coluna: 14
+Linha: 5
+
+end
+Coluna: 3
+Linha: 6
+
+<eot>
+Coluna: 0
+Linha: 7
+
