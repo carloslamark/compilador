@@ -1,13 +1,12 @@
-program incrementar;
-var primeiro : integer;
-var segundo : integer;
+program dividir;
+var numero : real;
+var aux : boolean;
 begin
-primeiro := 4;
-segundo := 6;
-primeiro := primeiro + segundo;#primeiro igual a 10
-if primeiro = 10 then
- while primeiro < 15 do
-  primeiro := primeiro + 1;
-if primeiro = 10 then
-  primeiro := primeiro + 1;
+numero := 3.5;
+while numero > 2 do
+ begin
+  aux := true;
+  numero := numero - 0.5;
+ end
+aux := false;
 end.

@@ -1,6 +1,6 @@
 
 public class Printer implements Visitor {
-	int levelBar = 0, levelSave = 0;
+	int levelBar = 0;
 	
 	public void ident() {
 		int stop = 0;
@@ -24,10 +24,14 @@ public class Printer implements Visitor {
 
 	
 	public void visitBody(nodeBody b) {
-		if(b.declarations != null)
+		if(b.declarations != null) {
+			System.out.print("\nDeclaracoes:");
 			b.declarations.visit(this);
-		if(b.compositeCommand != null)
+		}
+		if(b.compositeCommand != null) {
+			System.out.print("\n\nComandos:");
 			b.compositeCommand.visit(this);
+		}
 	}
 
 	
@@ -49,7 +53,7 @@ public class Printer implements Visitor {
 	
 	public void visitCompositeCommand(nodeCompositeCommand cc) {
 		if(cc.compositeCommandList != null) {
-			cc.compositeCommandList.visit(this);;
+			cc.compositeCommandList.visit(this);
 		}
 	}
 
@@ -74,6 +78,7 @@ public class Printer implements Visitor {
 
 	
 	public void visitCompositeCommandList(nodeCompositeCommandList ccl) {
+		int levelSave;
 		levelSave = levelBar;
 		if(ccl.command != null) {
 			ccl.command.visit(this);
@@ -82,7 +87,6 @@ public class Printer implements Visitor {
 		if(ccl.next != null) {
 			ccl.next.visit(this);
 		}
-		levelBar = levelSave;
 	}
 
 	
@@ -103,6 +107,7 @@ public class Printer implements Visitor {
 
 	
 	public void visitConditional(nodeConditional c) {
+		int levelSave;
 		levelSave = levelBar;
 		if(c.ifToken != null) {
 			levelBar++;
@@ -134,7 +139,6 @@ public class Printer implements Visitor {
 			ident();
 			System.out.print(i.whileToken.getName());
 			i.expression.visit(this);
-			levelBar--;
 		}
 		if(i.doToken != null) {
 			ident();
@@ -161,12 +165,14 @@ public class Printer implements Visitor {
 	public void visitExpression(nodeExpression e) {
 		if(e.simpleExpression != null) {
 			if(e.opRel != null) {
+				levelBar++;
 				e.opRel.visit(this);
 				levelBar++;
 			}
 			e.simpleExpression.visit(this);
 			if(e.next != null) {
 				e.next.visit(this);
+				levelBar-=2;
 			}
 		}
 	}
@@ -201,6 +207,7 @@ public class Printer implements Visitor {
 
 	
 	public void visitFactor(nodeFactor f) {
+		int levelSave;
 		if(f.intLiteral != null) {
 			f.intLiteral.visit(this);
 		}

@@ -20,11 +20,11 @@ public class Parser {
 			} else {
 				if (expectedKind == Token.TYPEERROR)
 					System.out.println("\nERRO PARSER! Declaração de tipo inválida!" + "\nToken: "
-							+ this.scanner.lexicToken.get(position).getSpelling() + "\nLinha:"
+							+ this.scanner.lexicToken.get(position).getName() + "\nLinha:"
 							+ this.scanner.lexicLine.get(position) + "\nColuna: "
 							+ this.scanner.lexicColumn.get(position));
 				else
-					System.out.println("\nERRO! \nToken: " + this.scanner.lexicToken.get(position).getSpelling()
+					System.out.println("\nERRO! \nToken: " + this.scanner.lexicToken.get(position).getName()
 							+ "\nLinha:" + this.scanner.lexicLine.get(position) + "\nColuna: "
 							+ this.scanner.lexicColumn.get(position));
 				System.exit(1);
@@ -113,16 +113,14 @@ public class Parser {
 	nodeCompositeCommandList parseCompositeCommandList() {
 		nodeCompositeCommandList ccl;
 		ccl = new nodeCompositeCommandList();
-		
+
 		ccl.command = parseCommand();
-		ccl.semicolon = currentToken;
-		accept(Token.SEMICOLON);
+		
 		if (currentToken.getKind() != Token.END) {
 			ccl.next = parseCompositeCommandList();
 		}
 		
 		return ccl;
-
 	}
 
 	nodeCommand parseCommand() {
@@ -134,9 +132,10 @@ public class Parser {
 			c.iterative = parseIterative();
 		else if (currentToken.getKind() == Token.BEGIN)
 			c.compositeCommand = parseCompositeCommand();
-		else
+		else {
 			c.assignment = parseAssignment();
-		
+			accept(Token.SEMICOLON);
+		}
 		return c;
 	}
 
