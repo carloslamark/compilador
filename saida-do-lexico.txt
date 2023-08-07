@@ -3,51 +3,51 @@ Coluna: 6
 Linha: 0
 
 <identifier>
-Coluna: 14
+Coluna: 19
 Linha: 0
 
 ;
-Coluna: 15
+Coluna: 20
 Linha: 0
 
 var
-Coluna: 5
+Coluna: 3
 Linha: 1
 
 <identifier>
-Coluna: 9
+Coluna: 13
 Linha: 1
 
 :
+Coluna: 16
+Linha: 1
+
+integer
+Coluna: 25
+Linha: 1
+
+;
+Coluna: 26
+Linha: 1
+
+var
+Coluna: 3
+Linha: 2
+
+<identifier>
 Coluna: 12
-Linha: 1
-
-integer
-Coluna: 21
-Linha: 1
-
-;
-Coluna: 22
-Linha: 1
-
-var
-Coluna: 5
-Linha: 2
-
-<identifier>
-Coluna: 11
 Linha: 2
 
 :
-Coluna: 14
+Coluna: 15
 Linha: 2
 
 integer
-Coluna: 23
+Coluna: 24
 Linha: 2
 
 ;
-Coluna: 24
+Coluna: 25
 Linha: 2
 
 begin
@@ -55,42 +55,178 @@ Coluna: 5
 Linha: 3
 
 <identifier>
-Coluna: 4
-Linha: 4
-
-:=
 Coluna: 8
 Linha: 4
 
-<integer-literal>
-Coluna: 11
-Linha: 4
-
-;
+:=
 Coluna: 12
 Linha: 4
 
+<integer-literal>
+Coluna: 15
+Linha: 4
+
+;
+Coluna: 16
+Linha: 4
+
 <identifier>
-Coluna: 6
+Coluna: 7
 Linha: 5
 
 :=
-Coluna: 10
+Coluna: 11
 Linha: 5
 
 <integer-literal>
-Coluna: 13
-Linha: 5
-
-;
 Coluna: 14
 Linha: 5
 
+;
+Coluna: 15
+Linha: 5
+
+<identifier>
+Coluna: 8
+Linha: 6
+
+:=
+Coluna: 12
+Linha: 6
+
+<identifier>
+Coluna: 22
+Linha: 6
+
+<op-ad>
+Coluna: 25
+Linha: 6
+
+<identifier>
+Coluna: 34
+Linha: 6
+
+;
+Coluna: 35
+Linha: 6
+
+if
+Coluna: 2
+Linha: 7
+
+<identifier>
+Coluna: 12
+Linha: 7
+
+<op-rel>
+Coluna: 15
+Linha: 7
+
+<integer-literal>
+Coluna: 19
+Linha: 7
+
+then
+Coluna: 25
+Linha: 7
+
+while
+Coluna: 7
+Linha: 8
+
+<identifier>
+Coluna: 17
+Linha: 8
+
+<op-rel>
+Coluna: 20
+Linha: 8
+
+<integer-literal>
+Coluna: 24
+Linha: 8
+
+do
+Coluna: 28
+Linha: 8
+
+<identifier>
+Coluna: 12
+Linha: 9
+
+:=
+Coluna: 16
+Linha: 9
+
+<identifier>
+Coluna: 26
+Linha: 9
+
+<op-ad>
+Coluna: 29
+Linha: 9
+
+<integer-literal>
+Coluna: 32
+Linha: 9
+
+;
+Coluna: 33
+Linha: 9
+
+if
+Coluna: 2
+Linha: 10
+
+<identifier>
+Coluna: 12
+Linha: 10
+
+<op-rel>
+Coluna: 15
+Linha: 10
+
+<integer-literal>
+Coluna: 19
+Linha: 10
+
+then
+Coluna: 25
+Linha: 10
+
+<identifier>
+Coluna: 12
+Linha: 11
+
+:=
+Coluna: 16
+Linha: 11
+
+<identifier>
+Coluna: 26
+Linha: 11
+
+<op-ad>
+Coluna: 29
+Linha: 11
+
+<integer-literal>
+Coluna: 32
+Linha: 11
+
+;
+Coluna: 33
+Linha: 11
+
 end
 Coluna: 3
-Linha: 6
+Linha: 12
+
+.
+Coluna: 4
+Linha: 12
 
 <eot>
 Coluna: 0
-Linha: 7
+Linha: 13
 

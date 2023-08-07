@@ -1,9 +1,9 @@
 
 public class nodeProgram
 {
-	char program;
-	char name;
-	char semicolon;
+	Token program;
+	Token identifier;
+	Token semicolon;
 	nodeBody body;
 	
 	public void visit (Visitor v) {

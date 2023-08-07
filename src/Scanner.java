@@ -22,10 +22,12 @@ public class Scanner
     public ArrayList<Integer> lexicColumn = new ArrayList<>();
     public ArrayList<Integer> lexicLine = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public Scanner initScan() {
         Scanner scanner = new Scanner();
+        
+
+        System.out.println("---> Iniciando analise lexica");
         scanner.readFileContent("arquivo-com-o-texto.txt");
-        Parser parser = new Parser();
         Token token;
         do {
             token = scanner.scan();
@@ -33,14 +35,16 @@ public class Scanner
             completeLexicFile += token.getSpelling() + '\n' + "Coluna: " + column + '\n' + "Linha: " + line +"\n\n";
         } while (token.getKind() != Token.EOT || token.getKind() == Token.LEXICALERROR);
         if (token.getKind() == Token.LEXICALERROR) {
-        	System.out.println("\n\nERRO LÉXICO!\n" + token.getSpelling()
+        	System.out.println("\n\nERRO LEXICO!\n" + token.getSpelling()
 					        	+ '\n' + "Coluna: " + column 
 					        	+ '\n' + "Linha: " + line +"\n\n"
 					        	);
+        	System.exit(3);
         }
+        System.out.println("Tudo certo!");
         scanner.saveContentInFile("saida-do-lexico.txt");
         
-        parser.parse(scanner);
+        return scanner;
     }
 
     private void readFileContent(String fileName) {
@@ -158,13 +162,17 @@ public class Scanner
                     return Token.SEMICOLON;
                 }
                 case '.': {
-                    // Regra do float
+                    // Regra do float e do ponto
                     takeIt();
                     
-                    while (isDigit(currentChar)) {
-                        takeIt();
+                    if(isDigit(currentChar)) {
+                    	while (isDigit(currentChar)) {
+                            takeIt();
+                        }
+                    	return Token.FLOATLITERAL;
                     }
-                    return Token.FLOATLITERAL;
+                    
+                    return Token.DOT;
                 }
                 case ':': {
                     // Regra dos dois pontos ou da atribuição

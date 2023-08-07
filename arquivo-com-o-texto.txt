@@ -1,7 +1,13 @@
-program carlos;
- var um : integer;
- var dois : integer;
+program incrementar;
+var primeiro : integer;
+var segundo : integer;
 begin
- um := 1;
- dois := 2;
-end
+primeiro := 4;
+segundo := 6;
+primeiro := primeiro + segundo;#primeiro igual a 10
+if primeiro = 10 then
+ while primeiro < 15 do
+  primeiro := primeiro + 1;
+if primeiro = 10 then
+  primeiro := primeiro + 1;
+end.

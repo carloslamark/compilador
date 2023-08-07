@@ -1,11 +1,13 @@
 
 public class nodeDeclarations {
-	char var;
-	nodeIdList idLidt;
-	char colon;
+	Token var;
+	nodeIdList idList;
+	Token colon;
 	nodeType type;
-	char semicolon;
+	Token semicolon;
 	nodeDeclarations next;
 	
-	visit
+	public void visit (Visitor v) {
+		v.visitDeclarations(this);
+	}
 }
